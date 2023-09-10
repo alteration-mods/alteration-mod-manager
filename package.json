@@ -3,12 +3,20 @@
   "private": true,
   "version": "0.1.0",
   "description": "Manage mods and run modded games with Alteration",
-  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "start": "electron ./dist/index.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev": "vite dev",
+    "build": "yarn && tsc && vite build",
+    "buildrun": "yarn build && yarn start",
+    "buildpackage": "yarn build && yarn package",
+    "package": "electron-builder",
+    "clean:build": "rm -rf ./dist && rm -rf ./release",
+    "clean:deps": "rm -rf ./node_modules",
+    "clean:all": "yarn clean:build && yarn clean:deps",
+    "clean": "yarn clean:all"
   },
   "dependencies": {
     "react": "^18.2.0",
